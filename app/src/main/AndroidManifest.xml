@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    AndroidManifest.xml
+
+    Android application manifest for Glyph Matrix Toy Editor.
+
+    This manifest defines the application configuration, permissions,
+    and component declarations required for the Android app.
+
+    Future configuration will include:
+    - Required permissions for storage access and file operations
+    - Activity declarations with intent filters
+    - Theme and styling configurations
+    - Hardware feature requirements
+    - Backup and security configurations
+
+    Copyright (c) 2024 Glyph Matrix Toy Editor Contributors
+    Licensed under the MIT License
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.glyphmatrix.toyeditor">
+
+    <!-- Permissions will be added as features are implemented -->
+
+    <application
+        android:allowBackup="true"
+        android:label="Glyph Matrix Toy Editor"
+        android:supportsRtl="true">
+
+        <!-- MainActivity will be configured with Jetpack Compose -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
