@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    themes.xml
+
+    Theme resources for Glyph Matrix Toy Editor.
+
+    Copyright (c) 2024 Glyph Matrix Toy Editor Contributors
+    Licensed under the MIT License
+-->
+<resources>
+    <style name="Theme.GlyphMatrixToyEditor" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="android:colorPrimary">#FF000000</item>
+        <item name="android:colorPrimaryDark">#FF000000</item>
+        <item name="android:colorAccent">#FFFF0000</item>
+
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">#FF000000</item>
+        <item name="android:navigationBarColor">#FF000000</item>
+    </style>
+</resources>
