@@ -38,6 +38,9 @@ import com.glyphmatrix.toyeditor.data.models.AnimationProject
 import com.glyphmatrix.toyeditor.engine.logic.AnimationEngine
 import com.glyphmatrix.toyeditor.engine.logic.PlaybackState
 import com.glyphmatrix.toyeditor.gdk.GlyphManager
+import com.glyphmatrix.toyeditor.nothingphone.GlyphEditorState
+import com.glyphmatrix.toyeditor.nothingphone.GlyphMatrixState
+import com.glyphmatrix.toyeditor.nothingphone.NothingGlyphMatrixEditor
 import com.glyphmatrix.toyeditor.ui.AppSettings
 import com.glyphmatrix.toyeditor.ui.EditorScreen
 import com.glyphmatrix.toyeditor.ui.EditorState
@@ -55,6 +58,7 @@ object Routes {
     const val ONBOARDING = "onboarding"
     const val PROJECTS = "projects"
     const val EDITOR = "editor"
+    const val GLYPH_MATRIX_EDITOR = "glyph_matrix_editor"
     const val EXPORT = "export"
     const val SETTINGS = "settings"
     const val HELP = "help"
@@ -161,6 +165,11 @@ fun GlyphMatrixApp(
         mutableStateOf(EditorState(project = AnimationProject.createNew()))
     }
     var playbackState by remember { mutableStateOf(PlaybackState.STOPPED) }
+
+    // Nothing Phone 3 Glyph Matrix editor state
+    var glyphEditorState by remember {
+        mutableStateOf(GlyphEditorState())
+    }
 
     // GDK status
     val isNothingPhone = glyphManager.isNothingPhone()
@@ -286,6 +295,9 @@ fun GlyphMatrixApp(
                         onNavigateToProjects = {
                             navController.navigate(Routes.PROJECTS)
                         },
+                        onNavigateToGlyphMatrix = {
+                            navController.navigate(Routes.GLYPH_MATRIX_EDITOR)
+                        },
                         onSaveProject = {
                             // Update the project in the projects list
                             val updatedProject = editorState.project
@@ -322,6 +334,25 @@ fun GlyphMatrixApp(
                         isSdkAvailable = isSdkAvailable,
                         exportedFilePath = exportedFilePath,
                         isExporting = isExporting
+                    )
+                }
+
+                // Nothing Phone 3 Glyph Matrix Editor
+                composable(Routes.GLYPH_MATRIX_EDITOR) {
+                    NothingGlyphMatrixEditor(
+                        editorState = glyphEditorState,
+                        onEditorStateChange = { newState ->
+                            glyphEditorState = newState
+                        },
+                        onExport = { matrixState ->
+                            // Export the matrix state
+                            // In a real implementation, this would serialize the state
+                            val exportData = matrixState.toExportMap()
+                            // Handle export...
+                        },
+                        onNavigateBack = {
+                            navController.popBackStack()
+                        }
                     )
                 }
 

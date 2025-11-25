@@ -125,6 +125,7 @@ data class EditorState(
  * @param onNavigateToExport Called when export is requested
  * @param onNavigateToSettings Called when settings is requested
  * @param onNavigateToProjects Called when projects is requested
+ * @param onNavigateToGlyphMatrix Called when Glyph Matrix editor is requested
  * @param onSaveProject Called when save is requested
  */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -138,6 +139,7 @@ fun EditorScreen(
     onNavigateToExport: () -> Unit,
     onNavigateToSettings: () -> Unit,
     onNavigateToProjects: () -> Unit,
+    onNavigateToGlyphMatrix: () -> Unit = {},
     onSaveProject: () -> Unit
 ) {
     var currentTool by remember { mutableStateOf(DrawingTool.DRAW) }
@@ -224,6 +226,13 @@ fun EditorScreen(
                             expanded = showMenu,
                             onDismissRequest = { showMenu = false }
                         ) {
+                            DropdownMenuItem(
+                                text = { Text("Nothing Phone (3) Glyph Matrix") },
+                                onClick = {
+                                    showMenu = false
+                                    onNavigateToGlyphMatrix()
+                                }
+                            )
                             DropdownMenuItem(
                                 text = { Text("Settings") },
                                 onClick = {
