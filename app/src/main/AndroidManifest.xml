@@ -15,7 +15,7 @@
     Licensed under the MIT License
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.glyphmatrix.toyeditor">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Nothing Glyph SDK Permission -->
     <uses-permission android:name="com.nothing.ketchum.permission.ENABLE" />
@@ -28,8 +28,12 @@
 
     <application
         android:allowBackup="true"
-        android:label="Glyph Matrix Toy Editor"
-        android:supportsRtl="true">
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GlyphMatrixToyEditor"
+        tools:targetApi="35">
 
         <!--
             Nothing GDK API Key
