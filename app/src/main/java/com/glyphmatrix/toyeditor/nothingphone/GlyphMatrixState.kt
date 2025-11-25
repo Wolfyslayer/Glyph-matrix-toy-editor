@@ -14,6 +14,7 @@
 package com.glyphmatrix.toyeditor.nothingphone
 
 import androidx.compose.runtime.Immutable
+import kotlin.math.roundToInt
 
 /**
  * Represents the state of a single LED in the Glyph Matrix.
@@ -284,8 +285,8 @@ data class GlyphMatrixState(
             if (state.isOn) {
                 NothingPhone3MatrixData.LED_POSITIONS.getOrNull(index)?.let { led ->
                     if (led.row in array.indices && led.col in array[led.row].indices) {
-                        // Scale to GDK brightness range (0-4095)
-                        array[led.row][led.col] = (state.brightness * 4095 / 255)
+                        // Scale to GDK brightness range (0-4095) using floating-point division
+                        array[led.row][led.col] = (state.brightness * 4095.0 / 255).roundToInt()
                     }
                 }
             }

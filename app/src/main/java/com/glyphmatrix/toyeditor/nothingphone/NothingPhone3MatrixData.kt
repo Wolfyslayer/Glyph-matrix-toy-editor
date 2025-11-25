@@ -86,8 +86,18 @@ object NothingPhone3MatrixData {
     /** Spacing between LEDs in SVG units (approximately) */
     const val LED_SPACING = 13.551f
 
-    /** Total number of LEDs in the matrix */
-    const val LED_COUNT = 489
+    /**
+     * Total number of LEDs in the matrix.
+     *
+     * This value is calculated based on the elliptical grid pattern:
+     * - 25 rows with varying LED counts per row due to the circular shape
+     * - Center rows (6-18) have the maximum 25 LEDs each
+     * - Edge rows taper off to form the elliptical mask
+     *
+     * Note: If this count doesn't match the official SVG, update the
+     * row definitions in buildLedPositions() to match the actual layout.
+     */
+    const val LED_COUNT = 546
 
     /** Number of rows in the logical grid */
     const val LOGICAL_ROWS = 25
@@ -120,23 +130,24 @@ object NothingPhone3MatrixData {
 
         // Row definitions: each row specifies the column range for LEDs
         // Format: rowIndex to Pair(startCol, endCol)
+        // LED count = endCol - startCol + 1 (inclusive range)
         // These are derived from analyzing the SVG structure
         val rowDefinitions = listOf(
-            // Row 0: columns 7-14 (7 LEDs) - top row
+            // Row 0: columns 7-14 (8 LEDs) - top row
             0 to (7 to 14),
-            // Row 1: columns 5-18 (11 LEDs)
+            // Row 1: columns 5-18 (14 LEDs)
             1 to (5 to 18),
-            // Row 2: columns 3-21 (15 LEDs)
+            // Row 2: columns 3-21 (19 LEDs)
             2 to (3 to 21),
-            // Row 3: columns 2-22 (17 LEDs)
+            // Row 3: columns 2-22 (21 LEDs)
             3 to (2 to 22),
-            // Row 4: columns 1-23 (19 LEDs)
+            // Row 4: columns 1-23 (23 LEDs)
             4 to (1 to 23),
-            // Row 5: columns 1-24 (21 LEDs)
+            // Row 5: columns 1-24 (24 LEDs)
             5 to (1 to 24),
-            // Row 6: columns 0-24 (23 LEDs)
+            // Row 6: columns 0-24 (25 LEDs)
             6 to (0 to 24),
-            // Row 7: columns 0-24 (23 LEDs)
+            // Row 7: columns 0-24 (25 LEDs)
             7 to (0 to 24),
             // Row 8: columns 0-24 (25 LEDs) - widest row
             8 to (0 to 24),
@@ -156,21 +167,21 @@ object NothingPhone3MatrixData {
             15 to (0 to 24),
             // Row 16: columns 0-24 (25 LEDs)
             16 to (0 to 24),
-            // Row 17: columns 0-24 (23 LEDs)
+            // Row 17: columns 0-24 (25 LEDs)
             17 to (0 to 24),
-            // Row 18: columns 0-24 (23 LEDs)
+            // Row 18: columns 0-24 (25 LEDs)
             18 to (0 to 24),
-            // Row 19: columns 1-23 (21 LEDs)
+            // Row 19: columns 1-23 (23 LEDs)
             19 to (1 to 23),
-            // Row 20: columns 1-23 (21 LEDs)
+            // Row 20: columns 1-23 (23 LEDs)
             20 to (1 to 23),
-            // Row 21: columns 2-22 (19 LEDs)
+            // Row 21: columns 2-22 (21 LEDs)
             21 to (2 to 22),
-            // Row 22: columns 3-21 (17 LEDs)
+            // Row 22: columns 3-21 (19 LEDs)
             22 to (3 to 21),
             // Row 23: columns 5-19 (15 LEDs)
             23 to (5 to 19),
-            // Row 24: columns 7-17 (7 LEDs) - bottom row
+            // Row 24: columns 7-17 (11 LEDs) - bottom row
             24 to (7 to 17)
         )
 
