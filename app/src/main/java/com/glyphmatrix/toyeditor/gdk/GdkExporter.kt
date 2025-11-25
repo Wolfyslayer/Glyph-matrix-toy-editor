@@ -17,8 +17,10 @@ package com.glyphmatrix.toyeditor.gdk
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import java.io.BufferedWriter
 import java.io.File
 import java.io.FileOutputStream
+import java.io.OutputStreamWriter
 
 /**
  * Represents a single frame in a GDK-compatible animation.
@@ -216,7 +218,7 @@ class GdkExporter(private val context: Context) {
      * Exports payload as JSON file.
      */
     private fun exportAsJson(payload: GdkAnimationPayload, file: File) {
-        FileOutputStream(file).bufferedWriter().use { writer ->
+        BufferedWriter(OutputStreamWriter(FileOutputStream(file), Charsets.UTF_8)).use { writer ->
             gson.toJson(payload, writer)
         }
     }

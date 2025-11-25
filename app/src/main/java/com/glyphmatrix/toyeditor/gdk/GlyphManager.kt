@@ -7,8 +7,11 @@
  * handling initialization, session management, and animation playback
  * for custom glyph matrix toys on Nothing Phone 3 devices.
  *
- * The SDK must be manually added to app/libs/ before building.
- * See app/libs/README.md for setup instructions.
+ * SDK Integration Notes:
+ * - The SDK class is: com.nothing.ketchum.GlyphManager
+ * - SDK must be manually added to app/libs/ before building
+ * - See app/libs/README.md for setup instructions
+ * - API Reference: https://github.com/Nothing-Developer-Programme/GlyphMatrix-Developer-Kit
  *
  * Copyright (c) 2024 Glyph Matrix Toy Editor Contributors
  * Licensed under the MIT License
@@ -144,8 +147,7 @@ class GlyphManager private constructor(private val context: Context) {
         }
 
         return try {
-            // When SDK is available, call:
-            // com.nothing.ketchum.GlyphManager.init(context)
+            // SDK call: com.nothing.ketchum.GlyphManager.init(context)
             Log.d(TAG, "Initializing Nothing GDK...")
             updateStatus(GdkConnectionStatus.DISCONNECTED)
             true
@@ -170,8 +172,7 @@ class GlyphManager private constructor(private val context: Context) {
 
         return try {
             updateStatus(GdkConnectionStatus.CONNECTING)
-            // When SDK is available, call:
-            // com.nothing.ketchum.GlyphManager.register(callback)
+            // SDK call: com.nothing.ketchum.GlyphManager.register(callback)
             Log.d(TAG, "Registering with Nothing GDK service...")
             updateStatus(GdkConnectionStatus.CONNECTED)
             true
@@ -200,8 +201,7 @@ class GlyphManager private constructor(private val context: Context) {
         }
 
         return try {
-            // When SDK is available, call:
-            // com.nothing.ketchum.GlyphManager.openSession()
+            // SDK call: com.nothing.ketchum.GlyphManager.openSession()
             Log.d(TAG, "Opening glyph session...")
             isSessionOpen = true
             true
@@ -221,8 +221,7 @@ class GlyphManager private constructor(private val context: Context) {
         if (!isSessionOpen) return
 
         try {
-            // When SDK is available, call:
-            // com.nothing.ketchum.GlyphManager.closeSession()
+            // SDK call: com.nothing.ketchum.GlyphManager.closeSession()
             Log.d(TAG, "Closing glyph session...")
             isSessionOpen = false
         } catch (e: Exception) {
@@ -246,7 +245,7 @@ class GlyphManager private constructor(private val context: Context) {
             Log.d(TAG, "Playing animation: ${payload.name}")
             callback?.onAnimationStarted()
 
-            // When SDK is available, use the payload to control LEDs:
+            // SDK calls for animation playback:
             // for (frame in payload.frames) {
             //     com.nothing.ketchum.GlyphManager.setMatrix(frame.matrixData)
             //     delay(frame.durationMs)
@@ -273,8 +272,7 @@ class GlyphManager private constructor(private val context: Context) {
         }
 
         return try {
-            // When SDK is available, call:
-            // com.nothing.ketchum.GlyphManager.setMatrix(matrixData)
+            // SDK call: com.nothing.ketchum.GlyphManager.setMatrix(matrixData)
             Log.d(TAG, "Setting glyph frame")
             true
         } catch (e: Exception) {
@@ -293,8 +291,7 @@ class GlyphManager private constructor(private val context: Context) {
         }
 
         return try {
-            // When SDK is available, call:
-            // com.nothing.ketchum.GlyphManager.turnOff()
+            // SDK call: com.nothing.ketchum.GlyphManager.turnOff()
             Log.d(TAG, "Turning off all glyphs")
             true
         } catch (e: Exception) {
