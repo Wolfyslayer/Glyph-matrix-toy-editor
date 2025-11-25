@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    strings.xml
+
+    String resources for Glyph Matrix Toy Editor.
+
+    Copyright (c) 2024 Glyph Matrix Toy Editor Contributors
+    Licensed under the MIT License
+-->
+<resources>
+    <string name="app_name">Glyph Matrix Toy Editor</string>
+
+    <!-- Export screen -->
+    <string name="export_title">Export to Nothing Phone</string>
+    <string name="export_button">Export Animation</string>
+    <string name="export_progress">Exporting…</string>
+    <string name="export_success">Export Complete!</string>
+    <string name="export_error">Export Failed</string>
+
+    <!-- Device status -->
+    <string name="device_nothing_detected">Nothing Phone Detected</string>
+    <string name="device_other">Non-Nothing Device</string>
+    <string name="sdk_connected">GDK Status: Connected</string>
+    <string name="sdk_not_available">SDK not available</string>
+
+    <!-- Guide steps -->
+    <string name="guide_title">Manual Integration Guide</string>
+    <string name="step_export">Export Your Animation</string>
+    <string name="step_transfer">Transfer to Nothing Phone</string>
+    <string name="step_developer_options">Enable Developer Options</string>
+    <string name="step_debug_mode">Enable Glyph Debug Mode</string>
+    <string name="step_install">Install with GDK App</string>
+    <string name="step_activate">Activate in Glyph Settings</string>
+
+    <!-- Developer resources -->
+    <string name="resources_title">Developer Resources</string>
+    <string name="resources_gdk_matrix">Glyph Matrix Developer Kit</string>
+    <string name="resources_gdk_docs">Glyph Developer Kit Documentation</string>
+    <string name="resources_community">Nothing Developer Community</string>
+    <string name="resources_note">This app uses the official Nothing GDK. All integrations follow Nothing\'s public API guidelines.</string>
+</resources>

@@ -7,12 +7,9 @@
     This manifest defines the application configuration, permissions,
     and component declarations required for the Android app.
 
-    Future configuration will include:
-    - Required permissions for storage access and file operations
-    - Activity declarations with intent filters
-    - Theme and styling configurations
-    - Hardware feature requirements
-    - Backup and security configurations
+    Includes Nothing Glyph Developer Kit (GDK) integration for
+    exporting and activating custom glyph matrix animations on
+    Nothing Phone devices.
 
     Copyright (c) 2024 Glyph Matrix Toy Editor Contributors
     Licensed under the MIT License
@@ -20,22 +17,60 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.glyphmatrix.toyeditor">
 
-    <!-- Permissions will be added as features are implemented -->
+    <!-- Nothing Glyph SDK Permission -->
+    <uses-permission android:name="com.nothing.ketchum.permission.ENABLE" />
+
+    <!-- Storage permissions for export functionality -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <application
         android:allowBackup="true"
         android:label="Glyph Matrix Toy Editor"
         android:supportsRtl="true">
 
-        <!-- MainActivity will be configured with Jetpack Compose -->
+        <!--
+            Nothing GDK API Key
+            During development: use "test" value
+            For production: register at https://nothing.tech/pages/glyph-developer-kit
+            and replace with your official API key
+        -->
+        <meta-data
+            android:name="NothingKey"
+            android:value="test" />
+
+        <!-- MainActivity configured with Jetpack Compose -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.GlyphMatrixToyEditor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--
+            Glyph Toy Service Registration
+            Custom glyph matrix animations are registered as services
+            to be displayed in Nothing OS Glyph settings
+        -->
+        <service
+            android:name=".gdk.GlyphToyService"
+            android:exported="true"
+            android:permission="com.nothing.ketchum.permission.ENABLE">
+            <intent-filter>
+                <action android:name="com.nothing.glyph.TOY_SERVICE" />
+            </intent-filter>
+            <meta-data
+                android:name="toy_name"
+                android:value="@string/app_name" />
+            <meta-data
+                android:name="toy_preview"
+                android:resource="@drawable/ic_launcher_foreground" />
+        </service>
 
     </application>
 
